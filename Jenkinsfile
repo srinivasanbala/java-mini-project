@@ -16,6 +16,9 @@ pipeline {
             sh '''
             ls -lrt 
             ls -lrt target/
+            cp -pr target/hello-world-?.war roles/tomcat/files/
+            ls -lrt roles/tomcat/files/
+            '''
         }
     }
     }
