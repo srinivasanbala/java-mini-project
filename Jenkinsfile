@@ -3,8 +3,7 @@ pipeline {
     stages { 
         stage('Build') { 
             steps { 
-               sh "mvn package"
-               sh "ls -lrt target/"
+               sh "ls -lrt "
             }
         }
         stage('Push the artifact to ansible') {
@@ -15,6 +14,7 @@ pipeline {
 
             sh '''
             ls -lrt 
+            echo $BUILD_NUMBER
             ls -lrt target/
             cp -pr target/hello-world-?.war roles/tomcat/files/
             ls -lrt roles/tomcat/files/
