@@ -7,16 +7,14 @@ pipeline {
                sh "ls -lrt target/"
             }
         }
-        stage('Git clone'){
-           steps{
-             script{
-                 GIT_CREDS = credentials(git)
-                 sh '''
-                    git clone git@github.com:srinivasanbala/terraform.git
-                    ls -lrt
-                  '''
-                  }
-             }
-          }
+        stage('Checkout repo proj') {
+        steps {
+            git branch: 'main',
+                credentialsId: 'git',
+                url: 'git@github.com:srinivasanbala/terraform.git'
+
+            sh "ls -lrt"
+        }
+    }
     }
 }
