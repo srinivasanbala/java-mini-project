@@ -3,6 +3,7 @@ pipeline {
     stages { 
         stage('Build') { 
             steps { 
+               sh "mvn package"
                sh "ls -lrt "
             }
         }
@@ -16,8 +17,11 @@ pipeline {
             ls -lrt 
             echo $BUILD_NUMBER
             ls -lrt target/
-            cp -pr target/hello-world-?.war roles/tomcat/files/
+            cp -pr target/hello-world-?.war roles/tomcat/files/hello-word-$BUILD_NUMBER.war
             ls -lrt roles/tomcat/files/
+            git add --all
+            git commit -am "added latest artifcat $BUILD_NUMBER"
+            git push
             '''
         }
     }
