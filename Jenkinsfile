@@ -3,8 +3,8 @@ pipeline {
     stages { 
         stage('Build') { 
             steps { 
-               mvn package
-               ls -lrt target/
+               sh mvn package
+               sh ls -lrt target/
             }
         }
     }
