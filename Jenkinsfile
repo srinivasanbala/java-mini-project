@@ -19,9 +19,9 @@ pipeline {
             ls -lrt target/
             cp -pr target/hello-world-?.war roles/tomcat/files/hello-word-$BUILD_NUMBER.war
             ls -lrt roles/tomcat/files/
-            git add --all
+            git add roles/tomcat/files/
             git commit -am "added latest artifcat $BUILD_NUMBER"
-            git push
+            git push --set-upstream origin main
             '''
         }
     }
