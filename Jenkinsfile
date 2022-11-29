@@ -7,13 +7,15 @@ pipeline {
                sh "ls -lrt target/"
             }
         }
-        stage('Checkout repo proj') {
+        stage('Push the artifact to ansible') {
         steps {
             git branch: 'main',
                 credentialsId: 'git',
-                url: 'git@github.com:srinivasanbala/terraform.git'
+                url: 'git@github.com:srinivasanbala/Ansible.git'
 
-            sh "ls -lrt"
+            sh '''
+            ls -lrt 
+            ls -lrt target/
         }
     }
     }
